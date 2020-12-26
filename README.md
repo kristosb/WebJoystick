@@ -6,7 +6,7 @@ Test it here: [WebJoystick](https://kristosb.github.io/WebJoystick/).
 # setting up development environment 
 $ npm init
 $ npm i serve
-$ npm_modules/serve/bin/serve.js
+$ node_modules/serve/bin/serve.js
 
 Debugging in chrome:
 - make sure vs code has the extension installed "Debugger for Chrome"
