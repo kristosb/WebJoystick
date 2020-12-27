@@ -13,7 +13,7 @@ var bottomControls = {
     t:TD.toggle({x:10,y:10,width:90,height:90,label:"Front",value:1,name:"toggle"}),
     b:TD.button({x:110,y:10,width:90,height:90,label:"FullScreen",value:0,name:"button",glyph: "&#xe200", onchange:function(e){bottomControls.log.log(fullScreenState); fullScreenState? openFullscreen():closeFullscreen(); fullScreenState=!fullScreenState;}}),
     log:TD.log({x:210,y:10,width:190,height:90,label:"Log",text:"A\nB\nC"}),
-    //db:TD.button({x:410,y:10,width:90,height:90,label:"del",value:0,name:"delb",glyph: "&#xe200"}),
+    db:TD.button({x:410,y:10,width:90,height:90,label:"del",value:0,name:"delb",glyph: "&#xe200",onchange:function(e){toggleFullScreen();}}),
     };
 var middleControls = {
     acc:TD.gauge({x:0,y:0,width:200,height:180,label:"RPMx1000",value:0,min:0,max:10,name:"acc"}),
@@ -230,5 +230,19 @@ function openFullscreen() {
       document.webkitExitFullscreen();
     } else if (document.msExitFullscreen) { /* IE11 */
       document.msExitFullscreen();
+    }
+  }
+  function toggleFullScreen() {
+    var doc = window.document;
+    var docEl = doc.documentElement;
+  
+    var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+    var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+  
+    if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+      requestFullScreen.call(docEl);
+    }
+    else {
+      cancelFullScreen.call(doc);
     }
   }
