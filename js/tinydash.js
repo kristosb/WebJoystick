@@ -70,7 +70,11 @@ var TD = {};
   // --------------------------------------------------------------------------
   /* {label} */
   TD.label = function(opts) {
-    return setup("label",opts,toElement('<div class="td td_label"><span>'+opts.label+'</span></div>'));
+    var el = setup("label",opts,toElement('<div class="td td_label"><span>'+opts.label+'\n'+opts.text+'</span></div>'));
+    el.setValue = function(txt) {
+      el.getElementsByTagName('span')[0].innerHTML = opts.label+'\n'+txt;
+    };
+    return el;
   };
   /* {label, glyph, value, toggle}*/
   TD.button = function(opts) {

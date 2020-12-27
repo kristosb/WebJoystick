@@ -14,25 +14,30 @@
             padding: 0;
             margin: 0;
         }
-
         #left {
             position: absolute;
             left: 0;
             top: 0;
             height: 80%;
-            width: 50%;
+            width: 40%;
             background: rgba(0, 255, 0, 0.1);
         }
-
         #right {
             position: absolute;
             right: 0;
             top: 0;
             height: 80%;
-            width: 50%;
+            width: 40%;
             background: rgba(0, 0, 255, 0.1);
         }
-
+        #middle {
+            position: absolute;
+            right: 40%;
+            top: 0;
+            height: 80%;
+            width: 20%;
+            background: rgba(255, 174, 0, 0.1);
+        }  
         #bottom {
             position: absolute;
             right: 0;
@@ -76,6 +81,7 @@
                 <div class="dump"></div>
             </div>
         </div>
+
         <div id="right">
             <div id="debugR">
                 <ul>
@@ -109,6 +115,7 @@
             </div>
         </div>
         <div id="bottom"></div>
+        <div id="middle"></div>
         <link href="js/tinydash.css" rel="stylesheet">
         <script  src="js/tinydash.js"></script>
         <!--<script type="module" src="js/collection.js"></script>
