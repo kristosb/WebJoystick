@@ -1,5 +1,6 @@
 const bottom_zone = document.getElementById('bottom');
 const middle_zone = document.getElementById('middle');
+var elem = document.documentElement;
 
 var s = function (sel) { return document.querySelector(sel); };
 var sId = function (sel) { return document.getElementById(sel); };
@@ -7,12 +8,12 @@ var removeClass = function (el, clss) {
     el.className = el.className.replace(new RegExp('\\b' + clss + ' ?\\b', 'g'), '');
 }
 
-
+var fullScreenState = true;
 var bottomControls = {
     t:TD.toggle({x:10,y:10,width:90,height:90,label:"Front",value:1,name:"toggle"}),
-    b:TD.button({x:110,y:10,width:90,height:90,label:"Start",value:0,name:"button",glyph: "&#xe200", onchange:function(e){bottomControls.log.log("Pressed!");}}),
+    b:TD.button({x:110,y:10,width:90,height:90,label:"FullScreen",value:0,name:"button",glyph: "&#xe200", onchange:function(e){bottomControls.log.log(fullScreenState); fullScreenState? openFullscreen():closeFullscreen(); fullScreenState=!fullScreenState;}}),
     log:TD.log({x:210,y:10,width:190,height:90,label:"Log",text:"A\nB\nC"}),
-    db:TD.button({x:410,y:10,width:90,height:90,label:"del",value:0,name:"delb",glyph: "&#xe200"}),
+    //db:TD.button({x:410,y:10,width:90,height:90,label:"del",value:0,name:"delb",glyph: "&#xe200"}),
     };
 var middleControls = {
     acc:TD.gauge({x:0,y:0,width:200,height:180,label:"RPMx1000",value:0,min:0,max:10,name:"acc"}),
@@ -202,11 +203,7 @@ function readJoystickEvents (evt,ctrlIn) {
     }, 200);
 }
 
-
 //console.log(JSON.stringify(joystickR.get(1)));
-
-
-
 
 bottomControls.log.log("Hello");
 
@@ -214,4 +211,24 @@ for (var i in gearControls) middle_zone.appendChild(gearControls[i]);
 for (var i in bottomControls) bottom_zone.appendChild(bottomControls[i]);
 for (var i in middleControls) middle_zone.appendChild(middleControls[i]);
 
-
+/* View in fullscreen */
+function openFullscreen() {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+      elem.msRequestFullscreen();
+    }
+  }
+  
+  /* Close fullscreen */
+  function closeFullscreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE11 */
+      document.msExitFullscreen();
+    }
+  }
