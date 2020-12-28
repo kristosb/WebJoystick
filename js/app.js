@@ -13,8 +13,8 @@ var removeClass = function (el, clss) {
 
 
 var bottomControls = {
-    t:TD.toggle({x:10,y:10,width:90,height:90,label:"Front",value:1,name:"toggle"}),
-    b:TD.button({x:110,y:10,width:90,height:90,label:"FullScreen",value:0,name:"button",glyph: "&#xe200", onchange:function(e){bottomControls.log.log("fs"); toggleFullScreen();}}),
+    t:TD.toggle({x:10,y:10,width:90,height:90,label:"HeadLights",value:1,name:"toggle"}),
+    b:TD.button({x:110,y:10,width:90,height:90,label:"FullScreen",value:0,name:"button",glyph: "&#x1f501;", onchange:function(e){bottomControls.log.log("fs"); toggleFullScreen();}}),
     log:TD.log({x:210,y:10,width:190,height:90,label:"Log",text:"A\nB\nC"}),
     //db:TD.button({x:410,y:10,width:90,height:90,label:"del",value:0,name:"delb",glyph: "&#xe200",onchange:function(e){toggleFullScreen();}}),
     };
@@ -26,9 +26,9 @@ var middleControls = {
     gear:TD.label({x:midSize.w*0.6,y:midSize.h*2,width:midSize.w*0.4,height:midSize.h*0.7,label:"gear",text:"N"})
     };
 var gearControls = {
-    drive:TD.button({x:0,y:10,width:100,height:100,label:"Drive",value:0,name:"drive",onchange:function(e){bottomControls.log.log("Drive!");middleControls.gear.setValue("D");}}),
-    neutral:TD.button({x:0,y:160,width:100,height:100,label:"Neutral",value:0,name:"neutral",onchange:function(e){bottomControls.log.log("Neutral!");middleControls.gear.setValue("N");}}),
-    reverse:TD.button({x:0,y:310,width:100,height:100,label:"Reverse",value:0,name:"revers",onchange:function(e){bottomControls.log.log("Reverse!");middleControls.gear.setValue("R");}}),
+    drive:TD.button({x:0,y:10,width:100,height:100,label:"Drive",value:0,name:"drive",glyph:"&#x44;", onchange:function(e){bottomControls.log.log("Drive!");middleControls.gear.setValue("D");}}),
+    neutral:TD.button({x:0,y:160,width:100,height:100,label:"Neutral",value:0,name:"neutral",glyph:"&#x4e;",onchange:function(e){bottomControls.log.log("Neutral!");middleControls.gear.setValue("N");}}),
+    reverse:TD.button({x:0,y:310,width:100,height:100,label:"Reverse",value:0,name:"revers",glyph:"&#x52;",onchange:function(e){bottomControls.log.log("Reverse!");middleControls.gear.setValue("R");}}),
     //break:TD.button({x:410,y:380,width:100,height:100,label:"Break",value:0,name:"break",onchange:function(e){bottomControls.log.log("Break!");}})
     };
 
