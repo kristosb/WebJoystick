@@ -1,5 +1,8 @@
 const bottom_zone = document.getElementById('bottom');
 const middle_zone = document.getElementById('middle');
+const left_zone = document.getElementById('left');
+const right_zone = document.getElementById('right');
+const gear_zone = document.getElementById('buttons');
 var elem = document.documentElement;
 
 var s = function (sel) { return document.querySelector(sel); };
@@ -15,16 +18,17 @@ var bottomControls = {
     log:TD.log({x:210,y:10,width:190,height:90,label:"Log",text:"A\nB\nC"}),
     //db:TD.button({x:410,y:10,width:90,height:90,label:"del",value:0,name:"delb",glyph: "&#xe200",onchange:function(e){toggleFullScreen();}}),
     };
+var midSize = {h:160, w: 170 };
 var middleControls = {
-    acc:TD.gauge({x:0,y:0,width:200,height:180,label:"RPMx1000",value:0,min:0,max:10,name:"acc"}),
-    speed:TD.gauge({x:0,y:180,width:200,height:180,label:"km/h",value:100,min:0,max:200,name:"speed"}),
-    fuel:TD.gauge({x:0,y:360,width:110,height:100,label:"Fuel",value:5,min:0,max:9,name:"speed"}),
-    gear:TD.label({x:110,y:360,width:90,height:100,label:"gear",text:"N"})
+    acc:TD.gauge({x:0,y:0,width:midSize.w,height:midSize.h,label:"RPMx1000",value:0,min:0,max:10,name:"acc"}),
+    speed:TD.gauge({x:0,y:midSize.h,width:midSize.w,height:midSize.h,label:"km/h",value:100,min:0,max:200,name:"speed"}),
+    fuel:TD.gauge({x:0,y:2*midSize.h,width:midSize.w*0.6,height:midSize.h*0.7,label:"Fuel",value:5,min:0,max:9,name:"speed"}),
+    gear:TD.label({x:midSize.w*0.6,y:midSize.h*2,width:midSize.w*0.4,height:midSize.h*0.7,label:"gear",text:"N"})
     };
 var gearControls = {
-    drive:TD.button({x:210,y:10,width:100,height:100,label:"Drive",value:0,name:"drive",onchange:function(e){bottomControls.log.log("Drive!");middleControls.gear.setValue("D");}}),
-    neutral:TD.button({x:210,y:160,width:100,height:100,label:"Neutral",value:0,name:"neutral",onchange:function(e){bottomControls.log.log("Neutral!");middleControls.gear.setValue("N");}}),
-    reverse:TD.button({x:210,y:310,width:100,height:100,label:"Reverse",value:0,name:"revers",onchange:function(e){bottomControls.log.log("Reverse!");middleControls.gear.setValue("R");}}),
+    drive:TD.button({x:0,y:10,width:100,height:100,label:"Drive",value:0,name:"drive",onchange:function(e){bottomControls.log.log("Drive!");middleControls.gear.setValue("D");}}),
+    neutral:TD.button({x:0,y:160,width:100,height:100,label:"Neutral",value:0,name:"neutral",onchange:function(e){bottomControls.log.log("Neutral!");middleControls.gear.setValue("N");}}),
+    reverse:TD.button({x:0,y:310,width:100,height:100,label:"Reverse",value:0,name:"revers",onchange:function(e){bottomControls.log.log("Reverse!");middleControls.gear.setValue("R");}}),
     //break:TD.button({x:410,y:380,width:100,height:100,label:"Break",value:0,name:"break",onchange:function(e){bottomControls.log.log("Break!");}})
     };
 
@@ -98,7 +102,7 @@ function bindNipple () {
 
 function createNipple () {
     joystick = nipplejs.create({
-        zone: document.getElementById('left'),
+        zone: left_zone,
         mode: 'static',
         position: { left: '50%', top: '50%' },
         color: 'green',
@@ -108,7 +112,7 @@ function createNipple () {
         threshold : 0
     });
     joystickR = nipplejs.create({
-        zone: document.getElementById('right'),
+        zone: right_zone,
         mode: 'static',
         position: { left: '70%', top: '40%' },
         color: 'red',
@@ -195,11 +199,13 @@ function dump (evt,elDumpIn) {
 
 //console.log(JSON.stringify(joystickR.get(1)));
 
-bottomControls.log.log("Hello");
+//bottomControls.log.log("Hello");
 
-for (var i in gearControls) middle_zone.appendChild(gearControls[i]);
 for (var i in bottomControls) bottom_zone.appendChild(bottomControls[i]);
 for (var i in middleControls) middle_zone.appendChild(middleControls[i]);
+for (var i in gearControls) gear_zone.appendChild(gearControls[i]);
+
+
 
 
 function toggleFullScreen() {
