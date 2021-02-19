@@ -46,11 +46,9 @@ const JOYSTICK_SERVICE_UUID = 0xBCDE;
       }
     setFrontLights(r) {
             this.joyData[1] =  r ?  this.joyData[1] | 0x01 : this.joyData[1] & 0xFE;
-            //console.log(this.joyData[1]);
         }
     Break(r) {
             this.joyData[1] =  r ?  this.joyData[1] | 0x02 : this.joyData[1] & 0xFD;
-            //console.log(this.joyData[1]);
           }
     SteerOffset(x) {
             this.joyData[2] = x;
